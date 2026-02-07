@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nephi Work</title>
+  <meta name="description" content="Nephi Work — витрина заказов и быстрый старт." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">NW</div>
+      <div class="brand-text">
+        <div class="brand-title">Nephi Work</div>
+        <div class="brand-subtitle">Заказы • Исполнители • Быстро</div>
+      </div>
+    </div>
+
+    <nav class="top-actions">
+      <button class="btn btn-ghost" id="openAuthBtn" type="button">Вход / Регистрация</button>
+      <button class="btn btn-primary" id="goOrdersBtn" type="button">Взять заказ</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-card glass">
+        <div class="pill">Мы на связи 24/7</div>
+        <h1>Добро пожаловать в <span class="accent">Nephi Work</span></h1>
+        <p class="lead">
+          Наша команда берёт задачи под ключ — быстро, аккуратно и с понятной коммуникацией.
+          У нас <b>10&nbsp;000+</b> положительных отзывов.
+        </p>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">10k+</div>
+            <div class="stat-label">положительных отзывов</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">~15 мин</div>
+            <div class="stat-label">средний старт работы</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">прозрачность статуса</div>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <button class="btn btn-primary btn-lg" id="heroTakeOrderBtn" type="button">Взять заказ</button>
+          <button class="btn btn-ghost btn-lg" id="howItWorksBtn" type="button">Как это работает</button>
+        </div>
+
+        <div class="note">
+          Просматривать заказы можно без регистрации. Вход нужен только для панели владельца.
+        </div>
+      </div>
+
+      <div class="hero-aside">
+        <div class="aside-card glass">
+          <h3>О компании</h3>
+          <ul class="checklist">
+            <li>Чёткие сроки и контроль этапов</li>
+            <li>Опытные исполнители</li>
+            <li>Удобная выдача и отчётность</li>
+          </ul>
+          <div class="aside-divider"></div>
+          <div class="small">
+            Для владельца доступна скрытая панель после входа.
+          </div>
+          <button class="btn btn-ghost full" id="ownerHintBtn" type="button">Я владелец</button>
+        </div>
+
+        <div class="aside-card glass subtle">
+          <h3>Безопасно</h3>
+          <p class="small">
+            Данные профиля (если вы регистрируетесь) сохраняются только в вашем браузере.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container glass">
+        <div class="section-head">
+          <h2>Как это работает</h2>
+          <p>Вы выбираете заказ, берёте его в работу и получаете обновления статуса.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-n">1</div>
+            <div class="step-b">
+              <div class="step-t">Выберите заказ</div>
+              <div class="step-d">Фильтры по сложности и категории.</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">2</div>
+            <div class="step-b">
+              <div class="step-t">Нажмите “Взять”</div>
+              <div class="step-d">Заказ попадёт в ваш список (локально).</div>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-n">3</div>
+            <div class="step-b">
+              <div class="step-t">Отслеживайте статус</div>
+              <div class="step-d">Можно пометить как выполненный/отменённый.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-foot">
+          <button class="btn btn-primary" id="howGoOrdersBtn" type="button">Перейти к заказам</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="orders">
+      <div class="container glass">
+        <div class="orders-head">
+          <div>
+            <h2>Заказы</h2>
+            <p class="muted">Просматривайте без регистрации. Взятые заказы сохраняются в этом браузере.</p>
+          </div>
+
+          <div class="orders-controls">
+            <div class="field">
+              <label for="searchInput">Поиск</label>
+              <input id="searchInput" placeholder="Например: дизайн, бот, сайт…" />
+            </div>
+
+            <div class="field">
+              <label for="difficultySelect">Сложность</label>
+              <select id="difficultySelect">
+                <option value="all">Все</option>
+                <option value="easy">Лёгкая</option>
+                <option value="medium">Средняя</option>
+                <option value="hard">Сложная</option>
+                <option value="ultra">Ультра</option>
+                <option value="impossible">Невозможная</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="sortSelect">Сортировка</label>
+              <select id="sortSelect">
+                <option value="new">Сначала новые</option>
+                <option value="priceDesc">Цена ↓</option>
+                <option value="priceAsc">Цена ↑</option>
+                <option value="difficulty">Сложность</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="orders-grid" id="ordersGrid" aria-live="polite"></div>
+
+        <div class="divider"></div>
+
+        <div class="my-orders">
+          <div class="my-orders-head">
+            <h3>Мои заказы</h3>
+            <div class="muted small">Локальный список (localStorage)</div>
+          </div>
+          <div id="myOrdersList" class="my-orders-list"></div>
+        </div>
+
+        <div class="section-foot split">
+          <button class="btn btn-ghost" id="scrollTopBtn" type="button">Наверх</button>
+          <button class="btn btn-ghost" id="openOwnerPanelBtn" type="button">Панель владельца</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner glass subtle">
+      <div>© <span id="year"></span> Nephi Work</div>
+      <div class="muted">Демо-версия (статический сайт)</div>
+    </div>
+  </footer>
+
+  <!-- Auth Modal -->
+  <dialog class="modal" id="authModal">
+    <div class="modal-inner glass">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title">Вход / Регистрация</div>
+          <div class="muted small">Регистрация необязательна — можно смотреть и без неё.</div>
+        </div>
+        <button class="icon-btn" id="closeAuthBtn" aria-label="Закрыть" type="button">✕</button>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="login" type="button">Вход</button>
+        <button class="tab" data-tab="register" type="button">Регистрация</button>
+      </div>
+
+      <div class="tabpanes">
+        <form id="loginForm" class="pane active" autocomplete="on">
+          <div class="grid2">
+            <div class="field">
+              <label>Логин</label>
+              <input name="login" required placeholder="Введите логин" />
+            </div>
+            <div class="field">
+              <label>Пароль</label>
+              <input name="password" type="password" required placeholder="Введите пароль" />
+            </div>
+          </div>
+
+          <!-- Подсказку с логином/паролем убрали намеренно -->
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Войти</button>
+            <button class="btn btn-ghost" id="continueGuestBtn" type="button">Продолжить как гость</button>
+          </div>
+        </form>
+
+        <form id="registerForm" class="pane" autocomplete="on">
+          <div class="grid2">
+            <div class="field">
+              <label>Никнейм</label>
+              <input name="nick" placeholder="Например: user123" />
+            </div>
+            <div class="field">
+              <label>E-mail (необязательно)</label>
+              <input name="email" type="email" placeholder="name@example.com" />
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div class="field">
+              <label>Логин</label>
+              <input name="login" required placeholder="Придумайте логин" />
+            </div>
+            <div class="field">
+              <label>Пароль</label>
+              <input name="password" type="password" required minlength="4" placeholder="Придумайте пароль" />
+            </div>
+          </div>
+
+          <div class="hint">
+            Аккаунт создаётся локально в вашем браузере (не отправляется на сервер).
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Создать</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Owner Panel Modal -->
+  <dialog class="modal" id="ownerModal">
+    <div class="modal-inner glass">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title">Панель владельца</div>
+          <div class="muted small">Доступно только после входа владельца.</div>
+        </div>
+        <button class="icon-btn" id="closeOwnerBtn" aria-label="Закрыть" type="button">✕</button>
+      </div>
+
+      <div class="owner-locked" id="ownerLocked">
+        <div class="locked-badge">🔒 Закрыто</div>
+        <p class="muted">
+          Войдите как владелец, затем откройте панель снова.
+        </p>
+        <button class="btn btn-primary" id="ownerGoLoginBtn" type="button">Открыть вход</button>
+      </div>
+
+      <div class="owner-content" id="ownerContent" hidden>
+        <div class="owner-grid">
+          <div class="owner-box">
+            <h3>Добавить заказ</h3>
+            <form id="addOrderForm">
+              <div class="field">
+                <label>Название</label>
+                <input name="title" required placeholder="Например: Лендинг для услуги" />
+              </div>
+              <div class="field">
+                <label>Описание</label>
+                <textarea name="desc" required rows="3" placeholder="Коротко: что нужно сделать"></textarea>
+              </div>
+              <div class="grid2">
+                <div class="field">
+                  <label>Сложность</label>
+                  <select name="difficulty" required>
+                    <option value="easy">Лёгкая</option>
+                    <option value="medium">Средняя</option>
+                    <option value="hard">Сложная</option>
+                    <option value="ultra">Ультра</option>
+                    <option value="impossible">Невозможная</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Цена (₽)</label>
+                  <input name="price" required inputmode="numeric" placeholder="1500" />
+                </div>
+              </div>
+              <div class="field">
+                <label>Теги (через запятую)</label>
+                <input name="tags" placeholder="сайт, дизайн, верстка" />
+              </div>
+              <div class="actions">
+                <button class="btn btn-primary" type="submit">Добавить</button>
+                <button class="btn btn-ghost" id="resetOrdersBtn" type="button">Сбросить к демо</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="owner-box">
+            <h3>Экспорт / Импорт</h3>
+            <p class="muted small">
+              Сохранение заказов владельца в JSON (локально). Можно перенести на другой ПК.
+            </p>
+            <div class="actions">
+              <button class="btn btn-ghost" id="exportBtn" type="button">Экспорт JSON</button>
+              <label class="btn btn-ghost file-btn">
+                Импорт JSON
+                <input type="file" id="importFile" accept="application/json" hidden>
+              </label>
+            </div>
+            <textarea id="ioBox" rows="9" spellcheck="false" placeholder="Здесь появится JSON для экспорта…"></textarea>
+            <div class="hint">Импортируйте содержимое в поле или через файл.</div>
+            <div class="actions">
+              <button class="btn btn-primary" id="applyImportBtn" type="button">Применить импорт</button>
+              <button class="btn btn-ghost" id="clearIoBtn" type="button">Очистить</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="owner-box">
+          <h3>Управление заказами</h3>
+          <p class="muted small">Удаление убирает заказ из общего списка и из «Моих заказов» (если он там был).</p>
+
+          <div class="field">
+            <label>Поиск (внутри панели владельца)</label>
+            <input id="ownerOrdersSearch" placeholder="Название, описание, тег…" />
+          </div>
+
+          <div class="owner-orders-list" id="ownerOrdersList"></div>
+          <div class="hint">Совет: перед удалением можно сделать экспорт JSON.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="owner-box">
+          <h3>Сессия</h3>
+          <div class="actions">
+            <button class="btn btn-ghost" id="logoutBtn" type="button">Выйти</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
