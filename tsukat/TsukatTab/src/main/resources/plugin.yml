@@ -1,0 +1,18 @@
+name: TsukatTab
+version: 2.0.0-RSPM
+main: me.tsukat.tab.TsukatTabPlugin
+api-version: '26.2'
+author: TSUKAT
+description: TSUKAT TAB with rank badges, vanilla skin heads and play streaks. Resource Pack is managed only by ResourcePackManager.
+softdepend:
+  - LuckPerms
+  - PlaceholderAPI
+  - TsukatRanks
+commands:
+  tsukattab:
+    description: Управление TSUKAT TAB
+    aliases: [ttab]
+    usage: /tsukattab <info|reload|refresh|streakreset>
+permissions:
+  tsukattab.admin:
+    default: op
