@@ -1,0 +1,7 @@
+# TsukatTab 2.0.0 — ResourcePackManager mode
+# Плагин не отправляет и не хостит RP.
+refresh-ticks: 40
+streak:
+  enabled: true
+  offline-grace-hours: 12
+  hours-per-day: 24
