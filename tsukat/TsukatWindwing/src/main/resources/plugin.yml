@@ -1,0 +1,14 @@
+name: TsukatWindwing
+version: 2.1.3-RSPM-CLEARFIX
+main: fun.tsukat.windwing.TsukatWindwingPlugin
+api-version: '26.2'
+author: TSUKAT
+description: Один огромный анимированный Теневой ветрокрыл. Resource Pack обслуживается только через ResourcePackManager.
+commands:
+  windwing:
+    description: Управление Теневым ветрокрылом
+    usage: /windwing <spawn|clear|status|toggle>
+permissions:
+  tsukatwindwing.admin:
+    description: Управление Теневым ветрокрылом
+    default: op
