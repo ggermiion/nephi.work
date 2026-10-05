@@ -1,0 +1,46 @@
+# TSUKAT — ResourcePackManager 2.4.6
+# Working self-host configuration confirmed on 2026-10-05.
+
+priorityOrder:
+  - TsukatPets-ResourcePack-26.2-v1.0.8.zip
+  - FreeMinecraftModels
+  - ResourcePackManager
+  - EliteMobs
+  - ModelEngine
+  - Nova
+  - ItemsAdder
+  - Oraxen
+  - BetterHUD
+  - ValhallaMMO
+  - MMOInventory
+  - vane-core
+  - RealisticSurvival
+
+# Do not use MagmaGuy remote hosting for this server.
+autoHost: false
+
+forceResourcePack: false
+resourcePackPrompt: "§d§lTSUKAT §7рекомендует установить ресурспак сервера."
+
+resourcePackRerouting: ''
+
+bedrockConversionEnabled: true
+geyserExtensionAutoInstall: true
+bedrockAutoDeployToGeyser: true
+bedrockGeyserFolder: ''
+bedrockConverterDebug: false
+
+# Keep enabled while diagnosing resource-pack issues.
+verboseLogging: true
+
+# Self-host the merged resource pack.
+selfHostEnabled: true
+selfHostPort: 22082
+networkHttpOffset-v2: 1
+selfHostExternalHost: '185.219.84.162'
+selfHostExternalUrl: 'http://185.219.84.162:22082/rspm.zip'
+selfHostForce: true
+preferSelfHost: true
+
+nightbreak:
+  autoDownloadPluginUpdates: false
