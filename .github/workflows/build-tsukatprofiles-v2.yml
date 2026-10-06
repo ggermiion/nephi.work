@@ -1,0 +1,128 @@
+name: Build TsukatProfiles 0.2.0 v2
+
+on:
+  push:
+    paths:
+      - '.github/workflows/build-tsukatprofiles-v2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Restore source snapshot
+        shell: bash
+        run: |
+          mkdir -p build
+          cat > build/source.b64 <<'EOF'
+          UEsDBBQAAAAIAPJ8RV2M9p/C7AQAAL0KAAAJAAAAUkVBRE1FLm1knVZBTxtHFL77V4zEFQNNpR4qhIRo1dIGySLk0ktY7AFWXnat3TUqEgeMm7oRSZ1IqRRFipKoh143xsaLvTZ/YeYv9Jf0e29mjQ1uVPVge70z773vvfe9b2ZB7ET1qhOXwmDf9WQkVpYeLK0UCuq9PlNj1VE9/PbUSI30hboWKhXqxrzDJ1Gf1Fif43eyPlAJFui7gZ3kQ/+iUjWEj2ux8+jxj+s7QnXVULdFyanJUDz4CgELhYUFof6CqzFC6AZbJog+5Nh4SWHwgKUUTz04eM4LK0tfAG5RfPd4U/ACo9PPKQhC6gZedu7YmAjIjl70dRMW56Jcj+LgqLgf+LEA5LEaYZ/qC061oZtwSkYJ5baEgOoNRxjBc8opUs6/4rktVMYLvwsqDwXRv6meQGh89Tmt1OTBaRnYA0aamA2XZMbVh1Px99nruZBh0Rab/rH04yA8+T7wKjJkZB9sY1pAhZZ00Bn6eyYY6zmsh3C7TPC4c6aXeMFFzxA0/bwfZD4WXxLWEZJuwQBYKUHg52LDUYoKNNnNRzy1KTTlj/rxY4c6QYkK/YK7nNlimuK+p1azH0KYIgbxqyc41JANBlRtg7T0zUYRK+TxhtATiozbxoQaMYkS1dWv1BXvurbctPwmE9R3yCzDSwObwHDFGoyYWkFtA5KnbDsifmD5bKodxPqOwWzoBtQZvD+KndiNYrccLdIAjfULjpTppuWFKWTKOKedjahbxKkbJj8SF+Biww6doYjp1ks0iNEjZJe9JexWXXIVu6alMG5xsLaY3ZmaGevjnc0fvvq0zsn0iB5N/mtmMrWoc/fEph7mZSIPDUMWLu4P69vs8x3pArcVPTAVbZrCE2+oLcm9LNLPef4Xr0wEGhnDnjalt+XEMnQdr8i9pPYN/oPvP03KYA70gHBe3SrdWHUX+ZcQgwb0Gg7yshEPhkQH8t1iLk1Ktyh0i8m5X/e84l5QOSHLARGAynxFxe1aOmTM/55Z5y7ReHEgqlLnljFWR98Sszj1rr4gFbvk0qAwyGh3uWakfnf6j1hlXIO1XUj/m9yAlIwyJn20A4pBhrhyi4jfA5ovo0tErPyg6N2Zan1hob1EVhnlVeT6TVBOY3EqR64vQukFTmX3/sJB6ECiV323XF0Tq7Ebe/J0z/F9GZ7uh84R/akcSCy5lbU55qE8Dqry/9uXQwkiidWq61fMJrEaOqEbn6xxERN0P1eA3jwHFenJWQdzNkUydupxMBum5jknTw6DehidHgV7T6qu50WnteOafaoA2GGEfceOV5dzseMhvOt3fvSKjMqz0Wdnan5uMHTLgT9ruLW+8+325vpD4hZx4MPdA7VAcm+HK2V+/bRZEpB3HNl2WDPM0deF3ZpXP3D9aHlbRihDWZaccnXL8Z0DGS4fuT/jm/j7kYbm7r3m/jlulFc/NUeNOY9TK8c3fOvp0kGJQ4oHzDL4D/1Mv5ralfIFg8a/TXxn4aZzbaJiWUG9njfJEIvb4Q+lj9M7vwo09TP88uFoRYEV+naOSVVwMhglEG5+ByjSLchkRfATLl+fxTUh/eqI/NwxDwlJ01IBgmHqnLAa5ufWtTCaQHYbfDvaOHTi5YelDcG2AyNTY3sa2cuaOUa6U34ysRe6GKniJCYA5AKoPpFEcTWHRhBygckLQYWiCxlS4lVhtRQXhX8AUEsDBBQAAAAIAPJ8RV22n544DgEAAKQBAAAQAAAAYnVpbGQuZ3JhZGxlLmt0c12QMU/DMBCFd/+KyFM6xCmRQBABA0gMCAFDYL861+Rax7ZsJ6hC/HcctxCpHmzp9N7n986qsSPts2+WxbODCdgPY50zo83uMi7NIIIf9xA4m9B5Mnoer0Ul1pwxh9Z4CsYR/iEGmFDnvA/B+rosZ4WwYNENUpAp/x2HMikLO24UyZKv5n9btKhb1HLhxQSWFL5pdcg5Laz01ukuwFJdXcVMm5FUKy6qm8IH2Cg8UudWJ1owRskeSAsFuhuhw89jK+Ex5M9R+HI2N9u8ulwlTgC/9+KLQt8cLN7O6sdjuvsT3tgQPV7EBqYl3c27+mieimu++HfgTmpwsqcJH8DjKwyYIvAmbfvdmW3k+lTgF1BLAwQUAAAACADyfEVdGg4POCQAAAAkAAAAEwAAAHNldHRpbmdzLmdyYWRsZS5rdHMrys8vCSjKz0pNLtHLS8xNVbBVUAopLs1OBImmZeakFitxAQBQSwMEFAAAAAgA8nxFXV/0t+RWAQAAOQIAAB0AAABzcmMvbWFpbi9yZXNvdXJjZXMvcGx1Z2luLnltbHWRz04CMRDG732KuXHBSjh42BtHo4eN4IlwaHYLNOxuN23XxBugiQeIvoEefAFjxPBH4BXaN3J2WTREPHUynX6/b74mLOYetHQ2YMZXsisirskNV1rIxIMardMaiZnAOpAxNcUcTXeD9PCZH2U9kRCWipMfgUr9jNYrhGWmLxVymtcXjRbRsmtCnvIk9KDtRyzgfRmFXDX88ypcZsHA5yrWVWgORKKvuDZScVXdu+RGdwi6iVkSao8AlHbyEiDkOlAiNQXePruxXbqhm7ixm4Ib2Xe7sQuwc7uyc3AP7s5+7jpbN7Qbd5/fuCktpDLNehjOaakP7TRit1x1fpEsjDGaI9zXQu8NcSs7s2tUneX0uRuhoZn9+sPE5qKM5yi8IJEUcxE6j7ZYfPcd+9/418wL0lZ27SY58wOJaAIX34JdQn4eOnWPh2E8ods5LWW7LIuMBzIl31BLAwQUAAAACADyfEVdzRZC5H0BAAA2AgAAHQAAAHNyYy9tYWluL3Jlc291cmNlcy9jb25maWcueW1sXVHLTsJAFN33K27CuoXojp1hZdSEKG7cTcsIDS1tpi3IjoeJC4ms3JgYf6E8SpBC+YU7f+SdFhJ105k5J/fcc05L0Li7v7poQF14j7bDA6gYZ0ZF84tnVQNgjuP19Z7N+7oXtrkIqhCKiBMTtInwe/w/4P8BLBZw3WTNFqfJc00rAX5hijEucYN7wE98B8zkGA9ySOgCUznDRI6BnokcyYkcyhEeiNoCXWLcGaTxcFkHXGFGSmtMlE5KxxpjOZZTwAX4TtSyu0H5lgdeJCxeZ1bnhnVZi4uyaz/RVxNHSveJU1HdnG/q5kA/cYoqYHFMpQJ80LYNbsnMnLamcop7+YrfgHsFq/XyRVnBBHAuJ2RUBaIQGV23NPBW8HJKAWdF/NUvpR2YwqbGdAqc0lCCO7WW5nOAVFVZGZWV0LnFDchn1SYZyiWIWmKmwIz4XW4lhloUhJ5ba7OwfF2vKbOxalRJFEKJoVnEqiosx7Y6zHSoHIcNuNC7zOWnX/8DUEsDBBQAAAAIAPJ8RV0aNMd+TiUAAM6rAAA6AAAAc3JjL21haW4vamF2YS9jb20vdHN1a2F0L3Byb2ZpbGUvVHN1a2F0UHJvZmlsZXNQbHVnaW4uamF2Ye19a3Mbx5Xod/+KNqo2AS14zIfsxNTDC5GQhAh8BADj1XV0WUNgSE4IzsAzAGUmVlVsZ9e7Zd/oZnfrJlV3nVxn637cKlmWbNp6+C8Af2F/yZ5zunume6bnAZK2k6pFYhGY6efp8z6nu18Y2r0De89hPf/QGoXjA3tkDQN/1x04l154wT0c+sGIec7IOjj2A9ey+0eONxoHjnXgHFu3nONLeWVGzjsja8WHAh48KS666weH0P+6fej0u/BgxR/4QelqWGPV6fmBPXJ9L6rmB3vWzvjgwB1ZL5kewsQPba+f9dLbdffGvEmYivKr4/Sy+tFrISyt2/bhQKtuqgeTckfHVoP+dI+HTk6hzYF97ATGAggc83T4K62bVcce7TeO1PXJqsC7LFPB9fCPHxxbTfltZeD2DgqqDakD0c9PfNfLLB93YJxn/PrQGdlWc+QcrsGXEkU7B+PBIKvs0AlCNxw5Xs+xNuX30ao9srMWazgY77me9Qv7yLZ+Av9s0u+YsuiF61vXid7Uh+HbA2Vu9GjkHjoA0HBkK0ChN+ORS6VfGI53AM5s1/XsAesN7DBkXSLqTU7TIR8AA1JxvH7I4jExaG/gHMJ8QtaiiTlBja1w4mi84/TGAKQa69o7SNADZ+QE7FcvvMDgMwzcI3vkQGHP40TB+juXtFcp9GeAUTCcGtuxoVIAX3YDIHt60N9zQr06gkfUwK9RLf6D15QvsDYHp9YEMpUQmJ3TB67FbBom8a/sQgeu1y8o4vICWglYn1G0BljoxlZz+/rGepddwZ/IOasVzmoFp63UWGVv7FbmLmU31Nu3A7beuFHvNn/W2O5s1lca0N4Pfz5uzM/P/7CoIg5hrd5cF1UWS1ZZ2Wi1Givd5kZcceGHYrp/u3HkBIHbd3g7HPGOfLfPfK/h2TsDpzoHGMLEJ7SPnFVn1x4PRhwRqnOiIfxE6wH9eM5dHcrV0b4LiFHhhSSU8CNWKK8SFlGruEUVXCoej9sZjYeIT2FVaYWeIuHv2KGjzYRTk6AbJhYY+tvY+QXQRmgFzttjN3DWfW8dOE11zxmJstWKxIY5pSPxzIIOJRHSQM1FVOqUxTJGZvcPgehnGRfV0AZHT/KGFhXIHdg1ziuhSz7ENdsDjSSozsGg9pAVBSQHQrFC2dU7vX2nPx7wqmOva4cHXeCZgagI+PjyVQUl8QO6A6tygcOGbFlpbMMbuJ7DX8HazyUqEhYce72f2Z47GNgdoJ+wOlTmLj/OkT0YA4nVAUCHSGRt564d9NOF70W/7tXY4nyLvcSW5lvy62vzLXXSMMCWv8eh5Hq7frXS7WzdqneZZPRs3lq05plDlNi3JAncKybeVTdMUe8oOE7M391l1f4OexEoCfBlDji+1Rv4nBiiebCePerts2rnp63GOz1nSJzf3fP8wOlD8/fUIUlORKNQqU4dRiQCBAXjV8RVJMXr/qCP8AAa5uWs48OBSvqK0MivLgom68dyJr86L5fuXUqmos6xnKwdVb8buCOnubvmhqHr7VVVYdjnbDXs0rOqSqGJWprYlNWu8Yd59VQJK6tdp2f5vckZq53hM6oVVQucgW/3QTi4nosYEnFaE2Yk+iB47lIXnVEATxiaBCrOIKISf3TeAV5ClBwAdgXepRzspgrIkOwAOA+t1Jx1eNB3A00M4IcUMA90OKpDOGvRIPl4eN8jfxO0ZlxfGp6BRGL6cN5J8prRfuDfJZxpjz3UAqPC1coKrJ4/Yr3AQRBV2IVo7CjdsEdoT+kvE7CGVUhRHmBuSpOzsJr2REHONPWVbELB1BQFlmwiRtoUFZYehETgHIRMqAK5TDNB7RkYBWz1CluFPpxAiEKLxLHUrquVX/R3estgIQCWLeOS57ATIbxDq79TmcN26juhPxiPHI6QKh3KMVdRmJEpwBBSyNkJu6LHGdIQKAzVAGdr2IeC1UqlkiqDn5V2o95tsG79WqvBmtfZ+kaXNf6u2el2GDcAt8WYq8bqjI3HAPZu4+9A2LWba/X2bXarcbuWUXgXADzaDh3HY831buNGo00drm+1WllVcBTbIKgPwlQVttq4Xt9qddl8VuVDf2f7ADSC09QdHg1PXbePZvlpKqJWfeRsE80SVAsKcsosU5IIMLcgEdhCcZHF4iJLVMRYYi71FFAzifj4OQcMHnsDHxCnGHWLkBDtlnIly7bIh+b0t+1RaVJQCKyKY6/RuGrQZxqo+MkCtfpE0XON+uGp5B8JLXvg/hIQLqEI9wVvrpQWhY4XjgOnurXVXKUVSzL16mbgDEEz6MeMcig45ZC/iVllGiDN9U6j3WUbbda8sb7RbuBibCRZHwd2zLzm2M/qra1Gp/pGjb0xV0kx4GGIZpZQORZqNGzQOsSDucQS8NItH14t1phwKVmef7dKIqIx9Hv7Hafng/VnqKoTSaG+P9N6llyhlOUlTTi1K7GMQ5zSlue+PXaa+nxmXcskP9jaXEU+oC9dcsE7ja4iUa7A+kUiAn9EPB9/cCZ+5Q29jTdvNgBLcEWVN0hXZiSgZQUUoHnj4EHtdXvV6Ju12arf3t5Yb2yvNde3uo185MhsZW3j2vatZqvVyam/VDCKRruwiYs5TawCG76ZUVlg/quierz+uVRxZtRW7XIw8z3sp3LdBrzgSIsWCvraQvI8oO42jHV1+FVZpofOO/h0zQlDUP+0gWo08bfkGLlpe/2BExhMefShVxPudOYYaIQbO1SQswAjvaSoTqumFMx1ybTsUcIlk+ki0duvsYvkBMkCQJV7FkAi9JwBAvwKUPjYmTMAZs3foThGNRkE0aEjuArSJ/y5wmg8vAoH0y16oyIKmpuivPCNsB/8QK2IoQKYNryMfwtiSCLTjGAs4aDiI5vFS2Wsca/GFlqnRUoljFRNhpSM4Aeu2E8C/9S4pgMpBSDsKzHZTNCIslrhJMZgGTOiZCPLi/xRgm05b4/tAe80QaClXJPntfKqk3KhZbaLo5Av2xu75JWqUkhhb3A83FdHyx0xcXmK54KYBQ6YCHVcEJVTw7d2fZDMMsRieN/DIHJVjylbb95sguBLF+5H8eOqHk62mt16q7kCKhksQp47wB863podsV125Dp3MZK2sbsb+5PZyA5gDQ2MmL/I5MBCqb1J9j3b53+4O1F7Ve2Aye54FsZ8aszUaI3QrcbmldajYC2o00fQrCAtbv1HL6u82xp7FWRztMAywqSOlheMQ6zQJHxXQxJ8zOiyYEjiyO2FApwBiHisoJMBZvcO2D5nDwiD6GF1DQkfDAKpZtxs1FeVkUVhXhbiN6hejR7NUYvYs4wba5EfLIYKxsZdFO5COIn1TBbruyGqfiTdCbXjWQmJf0WQ/RusMvnD5PPpryfPJ19X2DJLlqwxIworXWLU9nJESldpFi2QhwI29SCwj6nMVXU+spRl9/t8jJXJn3AY099MTiZPph8Le6qSGkD9p1v1uaKWJo+hrYfTjyZfMfjz9zC7R1zD4Ukbq6hm9S2yczpo5qR6udGu355LARbeOFXZYWIMuDjRylFxVTx7R/J9dQHwdz/Bw7X3r4Ohi7GVCJlWWhsrt2qwVP8Ms3o8eTq9zybPJg/Y9D0+T/r3MYCKz66LGj9MD3GAvs/NZQxlcT7ZVbO9sb7deXOjvQr9bR41oNG+BZbDLfIPgaLIph9MPoMl+mr63vT9yUM2eQrA/Qz+e1jJ7GUh2ctqs762sb6qdLRJHYFVkt3RicTT/M4Wk511N7qNte2N69tb66u3m+s3EJCfwrABaNDwSUW68C2USM7GLkCOG0Rzc1lLtPjjZCfr9bXGdrdOjf95cjJ9H0b/BOfESRFalZkHfYv7qYh/YfFPJo8Z4epnML0Hk2eV7OVKYcYmsL6umNPvsDL8D+aldRylOsieeeRltq6XUphyo7Xx5nYTQXu9DZPH5v4ftPEU1ueB1r/MsJDdUwTH1DvU00HO1+WtOyzc9+/27BB5yq/6FnffYYPcSxd9W7qnDn4EFelxZ+CP0Lb+1RJQ3hKYZhfVghSKhdLMhSLzl+DPZaWaNXC8vdE+PL5wIanwiMiPi2JAjvAt905C11KAGDcLxVIY1OiCwb3d6dbbCJzfIzymHyK+E+OquvDPwpzZY6YuNsYO0FOGjfxp+gFRz3N9Ye8pWA2qINcVzHqfUR4mAaHO8eJrNZFWcW08GoFCk08i048wCwWUpQEPMlRkGLUiNAXjfJETCrSBZj5mk28ATk9gsh8CewQaIMaPxC3oMGlyawP+UdaAM4jLNGROY2cfM3C8mIhzR/3jrFHn0OVJeuBEnGcb9wfT3zIiYOhi+kH+qF/PRA4z9hvHTDg+25gfTZ6zJTb5Mmr2OUoUlKEgPRFLfg3i5Vli9PeYA0p3Hq6n+HFn8/aNVr3T4cSH6sx7KCCxAwCcot/cr2SN/A8wyqcI2ul9Gvv0Q0DhL2DAX+ktfIzjf4xfJl9Ccxn0LWgbzYNYk4Y5FJgSKxHAkwYFeac5V4hi38I5jz5Me08zpUnx46WuMv+uR94RGRFo9iV/4f59TfTwtjroWb/CFn+svzq039nE7OErDCC/b8HPKsinKnVghVAHjW7gluyVqBU1cyldlX8H8wnf1WT7mjCa1QaKk9hqTJ1ljQPp/MyfuKOZjCCxdr1xgLkG8FpIZz/IWpSOE69l6CB+OP1rMrCNcGi5HizrTTvcx6JXq3ohaa3oStUI/ZIB9k/L8lK0YPqKO14/WjJYJnWla6KFC6a15mpAKDSAmI+QFNYy6DQ9gFrkugD0XCj9+XBgclU3wf3SGajH5J6R6Q7VBIyVlj0MY15hx9wNTa7jigtsJ7RQH4B+QUmWpl6FYmPGZgI7cEfHhQ3xYsheVzbWQDlPhs9Ea30n7BUPCgoF7lDy61TQc8f3B47tCYyD5hAIUuMQ7H0ObFMdfzC/fWS7XljF0NgydCarCBxOdqMxn0GhSYqfgTQkUWg+BrHxNbJw5MPcfORQMrjTXsQ5W254bWB7B5ioELWEL7J6EQAAK/w//+1fWCy0gLM/R2scdeQHwPyfTk5qKAjeR1tr+pGiNePQUvCV4oi5ADKY9KH4Dfph/sJheVyxzfpmo12ZqzFFF4IniWnEvhBsSHCQSLRjWzVCYmiQr2QljuPWOBBGPi1GVWr6y8uwQHkaRMi1Z+DuRKKoRcPjbN32RRNq5eqvWRrKtXq73Wy0ufUohbNmvsCikRVe6QF2B9Fk89SUP5J6/kAoIR+j/vd48iWDJ1+j+grPsdHPQXuZ/q/JE7T9STN4n0ylWTSVAmvjn2MlCHUiTU/K0FQSxCmkLmDRK0s6WJ5n6SbaAF/NgjuAfePNmiCFL+G/R1wH7B3oEKZZoCMENVKAJUD2PkMtT1OaKrr4AQwhsXOVzc9lAy9T1+5sguBt11vb0SD/RB6aRzD9RzCMfwIo3mfEQDgsTqb/QNZxBXvdHgbOkTaJTIdDWtO8trFxq8ZAR+hj1uwtaIKLEsJPvT9uP9I80YSkNaJHUo3Cp2a4XI5UoUzovDpfHjqfEg4jZH5bBBvPeWeUDZvZ1FquBKSEv5qtqakJKCTwyeKP7+haiEcugrTKgHkFV9jCJfpy+Qq7SN/SOkNUAcbCK+AXqPAj+pauQIRGLM+7cOEOVMEOXmKvw5JB+cwYSTLSQU1kRzAN0TJ9A1XVsJ9Kj5kRr+WB0zf3fSrl9AHELiV59Bx/V8aoeNqCIR1WaeJnsLw80tn1h/EC0xOhZetNG3RzQw+0WSGK01YpSpvA+hfFZjCjM0To1FKPNc6Axt+27yKOwSAvs3n27rss8fSqCCvmzbNDDDXuxBCCEGKXmlrhOhCRZCIuzIsJjz8MBn9TnxQSBqWl7gam/GTpzWa4RQ3tB1HPFJ/AfngxmZmfGrfQIDmvQK0EN75h6EXb0rbClTyZEFCNtujUWHrvm9XptpvrNxLjkD0UjYRy3cqOQ+z5KTcK1TYo17xb3Hgci7jrUk4In2eSZZCfVPWYYPg5YdNzJK8xDaEls51PqF+8QRK4simKNMpGlL0rarAxSS2mRmMpWH6Q4icfq/hBsgoN/sxOSJycQycXMjrhKl9GOoQzqpOiXzXC29NDRfIjGFEI9qdMyBHRLTITQKX5NQaASBO10mGyZABLfmbBBGXimfH4GARCxzfDgHjrvh1uke/HDAgw60zyLx8Y/4FG0fT9hH7MQBP8p+nvyEWW8FgaYNVurJpAhZ8kT4wBYJyisDCkwCCNLGtOI39vb+CQ+pyEB9pHQk4aujYp+/JTgGspJ0ExgDWjFExSc0DW2Kj8WPYQsE5EZ+NYRdILwuft9jODziZgfOsInp0Nqi5glLRbi5l/LaHyZPlFYxdc0juRcKBRUnBC2InKVuAc+rDqBhrCLbBKAzUWu0vKYYAaisKgLEcGYD668/yjklwoSVIJi11OSBiUoCotpRJOM4f6ScKjj9SPAeovgB8AU/hs+hE3s5+Shf0eFHkKM3qqxwYelGMROfOQc0Afj0ZyJdai3DpgRIOCRQ+J7T0zBTMM01CTJxIoraFkAvGMKek5WTRU9JIZ2/2xCdMTWC2DvFp+mnyoutmgNe5lE+/M7Sya2lnMaWfR3M6SqZ2lnHaWlHaELQYlsmMvCn4oHEWDH4/wGnK4EkAXbGhnAaC9o/loroJN8oZ8hsrnPLpTcVrp2ouG2gt67YXs2kuG2ot67cW4dlT97JsdjCnylBPP0QSz3vlCR9+WrryhpbwXb3bYSaqCWoFFKLCYV2AJCizlFbhYYj/Ft5I5XjINPLkfUSgeaVHIhW0kF9UhyCiUPxgfolEobRtSCIyWDc8OQC2zou4hq5iNFgrLq4XFI1NpHgtXC/MnelmxpRiL6Uh/T2cZckqZVqiZbL9N3K9wtxEO6wKrzIzvKeUxie9/FdiquCF4tNOMr6eTdNLfNgMWa/lgBUisZ3Dl47CWbpWJwpVKCoGNW9OysrVNG6BywJW9KUr2QPuJh0oWUJQ3l1c4yr+Jk93yisuslyg1Lb9tnm4iU6v6Zv1JgxNVlrBJ8EFDSLimw8zGbOAYnqbzv8gZF8pIrKmECO9VEpqMqJfJlchFHfuvlnlHtJfAOQ6rPA89IxY+Oh46wk8YKnFGEVy0AXcsLCJjwmoLAx8j3g7lh0T1aSeWWpsyNKH6ywvJkCdODduOdTH0dFKDlxnoNxg7dr2xk6hG3cb2l6RbbMlktguHEm6r2/fHQcgJDZYrzrVlr9DJKa+wpdfm51tpg5U3Ee3Fi1uQSbZZVaIde0qnIl02qwpPY43L89/p0go/eHkhYQcb4CzhdfUKAXhOJPQkiVsN9g6LuLKm4qoJQsXceTbr4uzytdPAdBskjuvtjTW59VqTpay+vkrjhK8b7dVGm127rW2ErndWzmczbSx8DYkkNNe2E8LadpwRo1MwYin807GDsQYTnt/dR5WhGoQW+k1VuyYItQSCfirdb/Zt1rPK9OhrmpECIoe56TU4jdAPRlXcsGBDLbCJe/QVem166IcnaoF2KNKBu29TWRJ+0CdZ8zp8NKdUgYUn015iN+hMqjJx736SdfOdQd8Cfi+UQ2/8Wk59PDM6J62nlD56anwXoIzw/awobV6abONpXBIdIo+i54/c3eNUADZG/AY/dUhxrKck/bd1pIA8i0I/uKGm8j/lWAH63zmdLHA27NF3fxeeTpASi2n7hjwtP/iBWK340LI0AvISBqfff37yGzb5k5ZxfQon/LfkgP/2eT3/N00wgXPkH8zoajg7vq8CZwTL+q+OL34flrfOmExxMaSMOIcztsdjvpHeaRJ7mVTukoig3tP6LhOS0x2sswdiZF87Whgm5ezfKcJtqSGk+HgxdguRAxaS24+zwRDGSSqP82g11cZs1coRxe1maOGif5C7lr9bjaz32DKPjG6ZhRmPQ8HpRPdGFU/OJn8ks/hguI+hwPkiXAv5XhfuUTC3hLPmDcVHDcuPYoIlX5vdMnQCYQwMcjicN0D4ecZlgJJVMgmY7BZ14KTLpQCkFzEDSfWqKF4oYzhLd8eeWmpI9fklLiYSXtjZHK75kuHU2i5yKsW0SxdQkEbZ3oJQzDpgTNSJvTaV+AypSsamRVOt+MSiWWrF3pRZuor8KTNUEh6VUjWkkaxFKU5TU5Dbaapy+pupJg+QnaLO4inqLFUyDnRLO6n0TI/v0M2QQQn5BkKNzcf/T6v7lLCe969ZHMapn8aM62ijR03dQ1TTMy+zbUuxDd6yaG+GCr9Uyinlose98W4G+qEIs6SPFidJhiVzQWUyesLtTbmekQFWrrvilM/0vkXuo5mxo6Lkz4RKT4BUT5vAXtJuKCxWgEXaloJ87CmFFvphKLK9s+BE6igTPqasQ0m0haAtX0rCBu044vv5acOHyQhQDjLBVNYw35mMHzVgglXYsoAT1Y9PJcGfpfKjaN500gi1kGFVnREH4rOSaHDKIdbJMTI6yaj4+CRelxc+24FGKYTc2NUHGBWARgaYmJx//LEYb7QvRZ7zQbf4jPyt4dAJVvAU5ZbfsweO1d7Y6M6ZTGTTYfIZfj8aVrlIdOyPMUYGUwzaOGvdOUxZ/n01LylzZOLFzLtMzXNRD6Ch2BrpcupA6WlIUhKJaxTHzC7pZSjAhjE5UTYVUaNSh64Hyi6Wq8qCf8ML4ubv19TyYqa8XZjV9ENKiJAtwJPJ00rx5OjsIOrbiQW+gTziu3PERVFYEe+FuE4/R7h9aXeTvnigWPattTXrGD4GjcgCy23/fwCtVeNG8Wezb4XHIDAOxQ0nsNDpurz3SF3xd1U9RZ1C7sJqG83Oz87UTwIpsDWTp3DkG5zqsRf5Jqd+3ESm2YnzyTI4jRdbSN+JL28/qYq/HcfDfUoh/YluO2LiSrCIzgf2jhMJ47fuMDvYC5M0L68Riw7sEn6upjiTEriacsGL4TKNF6t8GIadWnyTnfmcP6qj+at5Kv4DRptGn9JCPcKfj8QO6g8m3/Ac1egcJ8xQNSj6Ao1wd1bS3az9NB1tB3yAjzrtm0Po5Uh//ERtZG1pwTbemr9jGDSBUhyWs2+HVL5/zdlFMU5eOPnSDfkNL9mWt9jbaEgAjk5qE/saAJyTrwDAp9zVYAAxB3MO0KPdP/I8kNQRdJntJ33CAocQWk5wiBdrYNKKdkOVJS//SbmBDej3Cc/x/obS0x+mUKvMmFQcAVGaQhLssI5DuukMhoJwZuwmrZ4Iag/H6HgWGAZqScu/a1BLDHEnqBhtcOe3aaQBxkeWcd9JEWQTJ5svcxJ/RluqP5+c4P4aOoAOGOgJ7WanvQBnoOzkrPYCkFwVIiONiq+wi6aJ6tv7CKKLeRDNqO9GtZfuZBB8XrzVTNxGzP0z7kbI2OdPpI47vE5HyqlHGVwzl+MtmDieiFmbD/mMo77xe8OBzblQwY1Hj/i2o3PFJh47/AtDp3NbFhEZzV+Wskvw7/HOr3NdAn62kXEJXi25BAuzLAERayI0NguFYoVlHhR5lyuk75Ki+a4IZZ0PaaYQJQfNrMABi6zn1AeDauWt/2m//Mv5l1/f/vnPX75jyq6UMNBtwhk4FMhWOgrn13S8BZ5Nws+rc/vnxpiSxxUJUsk00DMJTRir0ITwXP0Cj6OvYNIEuXHwIKEhmNtt24O5YTc1hqe+xHiYSu/Az2lOclJGNbRRp2CabZ0ufEz+QCqr293im6H9RJXoHCfjUUWGCuLMH2HoNHtyJsU1ZR4cBpI28Hv1OKOWfeRUE7HKrD6MWko5bvUpiNAvpcjg5zVJXMDzZKuxQ2PuPJlZ38H7JY3MLLVzET9nZWYGNvHXyvFOS1McETVaytxHfw7oVwZgICsR857wFC20cr9EPfkBKcRPSLl7wHHSKH5Pi3wAB8yM/+5EaSns0/cDxJy8bCfkXiM3LVTHyKs1tIPQoRgstXbxjokrnKdO/h/6cQJpe/vspnU0ZJk0o2wsqKl7BGpq9n8tyutXMmhow8Is88MKyyzu8N2ot3ejrt6V/fzFEXtqPwnNf8aqcjMJ/f0+5db/njykk/0ecoMHzGiy+h6Is7GeE0t5cL4KOB5Xksk4vmex9ZdNwd8JXle+TXF2Bqx8Do++njyZ/lbkIp8vVgI88LTMM5nm/42TysTEaa3l7aCllB2UbPm8sV0/K9ZwWKqo/N0g/R8n30xOpu/x8whxcU7kadxcrztvdCfj6y8L3dXou352rNDjItY0K6VgVJoazd4HkbkwCcI5gZ8n8VD/epi7sLYxHuxRvO77xPY/cEc+milJTD8bYy+Ik5S6fdxMn9N/hIF+hiMuvrEw+poatvkAC3XMiUitOrhQH9MrIlZFoSomAzCXyhWnyAa77Lm9g6vscpa5Da/c/tXSjXIX8Hm3Kq56v4x4yKuyy9zHBF+I9r6cPJSMs3yz3HuiNlu6qrB99SGVMmmgHGn9M8xeKsynHSmJYm2kQHqasJmpOTrZW2turd5ttJv1VtRM+hBcxVNn4Gvf7ZEDbEE5SFfc6WA4XXfWkwh4K9HVDvBfLa4nNviqvsv59H4zhWNgaxeikWakbymO03NMjJG35RQmxchbaorSYRL3whTlxCgHhGenxIiD4hUIapAyZsXo2/W9rr2DiYTIBIrSYw7j1Bh74NphUWrM4RnSYhKZAAs56tjbpcL2ycoCJ5QAnxfH90JMDB4Bwz2s5mzqPLSH4oyR5WUx0ZzSMFe8lNSjg4uy40p0rH74pjvar75tSCeLmsNd9HjCc3YJ6AKWOnsztQIFLIgesOwdhEXrkWhIJkLUmEgegC8i7ovn8/PwI3nSyHefcTy/dK7KI/3lD2mn8q9ch88cuUwaMmCgzGsAvTi7kAxXp6wEAMNiBhiKscqIPNGiGtbuO5xVyv2UXNwSmwszBy59rWkcmG29UxgTO2OLmMEsK3nmOZspLFeUhXQUlX5AvmgGr6IncboMbzznbs8/BASiUiLUxi8teY6XUoKp9jGmVE6+4vfXc21xmfELZugRwnKZSVlHj0gyL4PQ5a3G7gFsWb3YE0yBB5PP6YqHE37LHR18eSJuDrV4p7iGy+xXLOnwFn5f6IgDI3BCEFTeKDWZ/0NJTY/VO0m12bTr7UbBXBaNc/k0vryT0RVfj5m4DeQJ4743zHKdPOVnfeIppk/LzunVeT6pI0BsoMbUnPCijPepe7z0UZtOY7O5okxH3NSpzmYpYzboGwRFlqGnELTa5+mFwes7MFvsCeWKYXLuSdkZLcop7Y+9kQHl/oiXvPIBTL7OXaD4hlN1UheNk/o9jle7i4VfBoRIt3nUMA4+sjqU1RBjB+0bMx09PHYmNYM/CHf/Y7z1VGJc7tpwFQ1UuvR0XjVO51/x4jlGK//3NZGoO/0AHkw/wttSMH9Puc9VIiUl8z5B31fZ2Yrp9sfOANhOaqb/Ov0As9ym99GXk7tW2j2x6vxeM85PXtkEHAeWZ/Pl+AbIS/ibu4mg24fUOZAAvyMGL+l7RiwLL9nTLtV9YMZPaU4q6Mmn7A/623tjO+inJv0pUjbd2AQ9fo6WMvx4BOO7r0Og1bjRWF+tt2+nFpp0cRUIP8rG2eciU/ipvAuTM5YvTPcGl2cqYl13/TFq5gYalHB8YMbfrfXmT7fU9b3ZqLe7eDUvzG+706jrAmDeOL8/02EoKFieM2CQeCrKMw5VJVIBc6rIow3zZR0/SrFY2N11ke9se+7efhqjf48HSdNR/HQz8/Pph8mpp2TetdZWY/tafX290dZnbZzz9HfYPoYCkYlSZwDgx/wKSKDW08m83cD/peNtY5K6gUz/jfg2ptSIu0mRbb+XS68rt+vrhkmZ5d//x4XEm7m19pG1Eh49BhT+oLx44DOyx4Ef2Gnig9Y4tnMY4snfyH7Q7ZLLYje32pst0zqZhSA/qOd+1E+0POQfe6TdRYXu7NLrFbFUxxluw7IZlutf8Igg4tycAdK9o7R+xQym1bxxs7udgZJm0ajy2gglTxJX2JYUGUjqOMGSJEsnmhZTbOj5dw2YgEvyBWcZBSQaO0uKKfRTwq/3YVmJFX2pMAR5N26WMDFwWg4At+ekxv9/6f6s+6bxJ2gx4e+ZiR6llHoucOrBqabxo3yiVIklNZkEHQLGbq+0b4MEbBVTYXQNOQk6hfApvz4i/en90txFkh/fnJKcickqSIm6DBmeJeX+SBq0hLwi5bRlKC3j6BCiIoIRR3aMnGFoWCxpeD0WhtfkpIB8Wo06Tfka2LydEqYdMStcLNRVol0lwtYjm+Is2suCaj5sA9iTU0QeS8rvsyjv5mERgzCaEmbq+ndCOX6F5xfitseoS9K3yzPL5FRMcymaTFlN20xiGbM53XTEfFCrXjBMhavu31C7wPxyp9G52Wy0Shh2n6BwjvX+Z8r12qQ5IxK+lzAFaoxndj7nyvT0d9J++BpNRJ4b80jcyC04KEr9z4liH5U2JRbmvwdTwmgvosKvGvNIfLPpma/minXHGx8yfls2NLJWb67XWHyZdbJ0OMJzx4FJefaA9QZ2GCau/XMxioBnMIXxldriVcz3ZGu8GdF5SH8uZRRSbjzPKqLEfbKKyBvN0++1+7/5NyWAnzjKSrtjXAx81kvZ8TPad0OLV8c99gkARCWijUjJ+UclRDKKPvXorbhqXZ+44p3UI0Q0Xx4lioFCcbvoZkSzl1QBXNyJAeMCPIein32gFeUdkxjsIFzT76Jjvg3v5AHepmrioG7DKx6Q1l9oVxSQMzbnPTdgcwqQumx8z496yn61mP1qid7Actx74d4L/wVQSwECFAMUAAAACADyfEVdjPafwuwEAAC9CgAACQAAAAAAAAAAAAAApIEAAAAAUkVBRE1FLm1kUEsBAhQDFAAAAAgA8nxFXbafnjgOAQAApAEAABAAAAAAAAAAAAAAAKSBEwUAAGJ1aWxkLmdyYWRsZS5rdHNQSwECFAMUAAAACADyfEVdGg4POCQAAAAkAAAAEwAAAAAAAAAAAAAApIFPBgAAc2V0dGluZ3MuZ3JhZGxlLmt0c1BLAQIUAxQAAAAIAPJ8RV1f9LfkVgEAADkCAAAdAAAAAAAAAAAAAACkgaQGAABzcmMvbWFpbi9yZXNvdXJjZXMvcGx1Z2luLnltbFBLAQIUAxQAAAAIAPJ8RV3NFkLkfQEAADYCAAAdAAAAAAAAAAAAAACkgTUIAABzcmMvbWFpbi9yZXNvdXJjZXMvY29uZmlnLnltbFBLAQIUAxQAAAAIAPJ8RV0aNMd+TiUAAM6rAAA6AAAAAAAAAAAAAACkge0JAABzcmMvbWFpbi9qYXZhL2NvbS90c3VrYXQvcHJvZmlsZS9Uc3VrYXRQcm9maWxlc1BsdWdpbi5qYXZhUEsFBgAAAAAGAAYAtAEAAJMvAAAAAA==
+          EOF
+          base64 -d build/source.b64 > build/source.zip
+          unzip -q build/source.zip -d build/project
+
+      - name: Create Maven build
+        shell: bash
+        run: |
+          cat > build/project/pom.xml <<'POM'
+          <project xmlns="http://maven.apache.org/POM/4.0.0"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+            <modelVersion>4.0.0</modelVersion>
+            <groupId>com.tsukat</groupId>
+            <artifactId>TsukatProfiles</artifactId>
+            <version>0.2.0</version>
+            <properties>
+              <maven.compiler.release>25</maven.compiler.release>
+              <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+            </properties>
+            <repositories>
+              <repository>
+                <id>papermc</id>
+                <url>https://repo.papermc.io/repository/maven-public/</url>
+              </repository>
+            </repositories>
+            <dependencies>
+              <dependency>
+                <groupId>io.papermc.paper</groupId>
+                <artifactId>paper-api</artifactId>
+                <version>26.2.build.129-stable</version>
+                <scope>provided</scope>
+              </dependency>
+              <dependency>
+                <groupId>org.xerial</groupId>
+                <artifactId>sqlite-jdbc</artifactId>
+                <version>3.53.4.0</version>
+              </dependency>
+            </dependencies>
+            <build>
+              <finalName>TsukatProfiles-0.2.0</finalName>
+              <plugins>
+                <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <version>3.14.1</version>
+                  <configuration>
+                    <release>25</release>
+                    <encoding>UTF-8</encoding>
+                  </configuration>
+                </plugin>
+                <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-shade-plugin</artifactId>
+                  <version>3.6.1</version>
+                  <executions>
+                    <execution>
+                      <phase>package</phase>
+                      <goals><goal>shade</goal></goals>
+                      <configuration>
+                        <createDependencyReducedPom>false</createDependencyReducedPom>
+                        <filters>
+                          <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                              <exclude>META-INF/*.SF</exclude>
+                              <exclude>META-INF/*.DSA</exclude>
+                              <exclude>META-INF/*.RSA</exclude>
+                            </excludes>
+                          </filter>
+                        </filters>
+                        <transformers>
+                          <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                        </transformers>
+                      </configuration>
+                    </execution>
+                  </executions>
+                </plugin>
+              </plugins>
+            </build>
+          </project>
+          POM
+
+      - name: Set up Java 25
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - name: Build plugin
+        working-directory: build/project
+        run: mvn -B -U clean package
+
+      - name: Verify JAR
+        shell: bash
+        run: |
+          test -f build/project/target/TsukatProfiles-0.2.0.jar
+          jar tf build/project/target/TsukatProfiles-0.2.0.jar | grep -q '^plugin.yml$'
+          jar tf build/project/target/TsukatProfiles-0.2.0.jar | grep -q '^com/tsukat/profile/TsukatProfilesPlugin.class$'
+          jar tf build/project/target/TsukatProfiles-0.2.0.jar | grep -q '^org/sqlite/JDBC.class$'
+          unzip -p build/project/target/TsukatProfiles-0.2.0.jar plugin.yml
+
+      - name: Upload plugin
+        uses: actions/upload-artifact@v4
+        with:
+          name: TsukatProfiles-0.2.0
+          path: build/project/target/TsukatProfiles-0.2.0.jar
+          if-no-files-found: error
